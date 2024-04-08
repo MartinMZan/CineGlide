@@ -1,0 +1,30 @@
+{% include "header.html" %}
+
+<html lang="en">
+<body>
+
+<p class="lead">Most popular movies.</p>
+<div class="row row-cols-1 row-cols-sm-3 row-cols-md-5 g-7">
+    {% for movie in movies: %}
+    <form method="post" action="{{ url_for('index') }}">
+    <input type="hidden" name="movie" value="{{ movie }}" />
+    <a onclick="this.parentNode.submit();">
+      <div class="col">
+        <div class="card h-100">
+          <img src="{{ movie.poster_path }}" class="card-img-top" alt="{{ movie.title + 'poster' }}">
+          <div class="card-body">
+            <h5 class="card-title">{{ movie.title }}</h5>
+            <p class="card-text">{{ movie.overview }}</p>
+          </div>
+        </div>
+      </div>
+    </a>
+    </form>
+    {% endfor %}
+
+</div>
+
+</body>
+</html>
+
+{% include "footer.html" %}
